@@ -1,0 +1,11 @@
+import { configureStore } from '@reduxjs/toolkit'
+import auth from './slices/authSlice'
+import posts from './slices/postsSlice'
+import jobs from './slices/jobsSlice'
+import chat from './slices/chatSlice'
+import notifications from './slices/notificationsSlice'
+import users from './slices/usersSlice'
+
+export default configureStore({
+  reducer: { auth, posts, jobs, chat, notifications, users },
+})

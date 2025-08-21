@@ -1,0 +1,58 @@
+### AUTH
+POST http://localhost:5000/api/auth/register
+Content-Type: application/json
+
+{
+  "name":"Test User",
+  "email":"test@example.com",
+  "password":"password123"
+}
+
+###
+POST http://localhost:5000/api/auth/login
+Content-Type: application/json
+
+{
+  "email":"test@example.com",
+  "password":"password123"
+}
+
+### USERS
+GET http://localhost:5000/api/users/{{userId}}
+Authorization: Bearer {{token}}
+
+### POSTS
+POST http://localhost:5000/api/posts
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{"content":"Hello GC!"}
+
+### FEED
+GET http://localhost:5000/api/posts/feed/{{userId}}
+Authorization: Bearer {{token}}
+
+### JOBS
+POST http://localhost:5000/api/jobs
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{"title":"Frontend Dev","description":"React role","skills":["React"]}
+
+###
+GET http://localhost:5000/api/jobs
+
+### APPLY
+POST http://localhost:5000/api/jobs/apply/{{jobId}}
+Authorization: Bearer {{token}}
+
+### CHAT
+POST http://localhost:5000/api/messages
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{"senderId":"{{userId}}","receiverId":"{{peerId}}","content":"Hi there"} 
+
+###
+GET http://localhost:5000/api/messages/{{userId}}/{{peerId}}
+Authorization: Bearer {{token}}
