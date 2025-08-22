@@ -25,6 +25,8 @@ const allowedOrigin = process.env.CORS_ORIGIN || 'http://localhost:5173'
 app.use(cors({ origin: allowedOrigin, credentials: true }))
 app.use(express.json({ limit: '1mb' }))
 app.use(cookieParser())
+app.use('/uploads', express.static('uploads'))   // ← serve images
+
 
 app.get('/', (req,res)=>res.send('Global_Connect API'))
 

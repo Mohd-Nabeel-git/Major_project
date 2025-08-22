@@ -4,8 +4,7 @@ import posts from './slices/postsSlice'
 import jobs from './slices/jobsSlice'
 import chat from './slices/chatSlice'
 import notifications from './slices/notificationsSlice'
-import users from './slices/usersSlice'
 
 export default configureStore({
-  reducer: { auth, posts, jobs, chat, notifications, users },
+  reducer: { auth, posts, jobs, chat, notifications }
 })

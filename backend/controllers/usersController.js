@@ -24,12 +24,15 @@ export async function updateUser(req, res) {
   res.json(user)
 }
 
+
 // 🆕 NEW: get all users (for chat list)
 export async function getAllUsers(req, res) {
   try {
-    const users = await User.find().select('-password')
+    const users = await User.find({ _id: { $ne: req.user._id } }).select('-password')
     res.json(users)
   } catch (err) {
+    console.error(err)
     res.status(500).json({ message: 'Server error' })
   }
 }
+
