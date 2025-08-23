@@ -7,6 +7,8 @@ import Jobs from './pages/Jobs'
 import Chat from './pages/Chat'
 import Admin from './pages/Admin'
 import UsersList from './pages/UsersList'   // 🆕 import UsersList
+import Request from './pages/Requests'
+import Connection from './pages/Connection'
 import Navbar from './components/Navbar'
 import Footer from './components/Footer'
 import { useSelector } from 'react-redux'
@@ -32,6 +34,8 @@ export default function App() {
             <Route path="/users" element={<UsersList />} />
             <Route path="/chat/:peerId?" element={<Chat />} />
             <Route path="/admin" element={<Admin />} />
+            <Route path="/requests" element={<Request />} />
+            <Route path="/connections" element={<Connection />} />
           </Routes>
         </div>
         <Footer />

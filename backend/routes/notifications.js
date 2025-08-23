@@ -1,18 +1,22 @@
-import express from 'express';
-import notificationsController from '../controllers/notificationsController.js';
-import auth from '../middleware/auth.js';
-const router = express.Router();
+import express from 'express'
+import notificationController from '../controllers/notificationsController.js'
+import auth from '../middleware/auth.js'
 
-// Get all notifications for logged-in user
-router.get('/', auth, notificationsController.getNotifications);
+const router = express.Router()
 
-// Add a new notification
-router.post('/', auth, notificationsController.addNotification);
+// 📌 Get all notifications for logged-in user
+router.get('/', auth, notificationController.getNotifications)
 
-// Mark a notification as read
-router.patch('/:id/read', auth, notificationsController.markAsRead);
+// 📌 Add a new notification
+router.post('/', auth, notificationController.addNotification)
 
-// Clear all notifications for logged-in user
-router.delete('/clear', auth, notificationsController.clearNotifications);
+// 📌 Mark a notification as read
+router.patch('/:id/read', auth, notificationController.markAsRead)
 
-export default router;
+// 📌 Mark all notifications as read
+router.patch('/mark-all-read', auth, notificationController.markAllAsRead)
+
+// 📌 Clear all notifications for logged-in user
+router.delete('/clear', auth, notificationController.clearNotifications)
+
+export default router

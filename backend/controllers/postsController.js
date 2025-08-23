@@ -5,18 +5,25 @@ export async function createPost(req, res) {
   try {
     const { content } = req.body
 
+    // dynamically detect backend URL if not in env
+    const backendUrl =
+      process.env.BACKEND_URL ||
+      `${req.protocol}://${req.get("host")}`
+
     const post = await Post.create({
       userId: req.user._id,
-      content: content || '',
-      image: req.file ? `${process.env.BACKEND_URL || 'http://localhost:5000'}/uploads/${req.file.filename}` : null,
-      media: Array.isArray(req.body.media) ? req.body.media : []
+      content: content || "",
+      image: req.file
+        ? `${backendUrl}/uploads/${req.file.filename}`
+        : null,
+      media: Array.isArray(req.body.media) ? req.body.media : [],
     })
 
     await Notification.create({
       user: req.user._id,
-      type: 'post',
-      message: 'Your post was created successfully.',
-      link: `/profile/${req.user._id}`
+      type: "post",
+      message: "Your post was created successfully.",
+      link: `/profile/${req.user._id}`,
     })
 
     res.json(post)
@@ -25,6 +32,8 @@ export async function createPost(req, res) {
     res.status(500).json({ message: "Server error" })
   }
 }
+
+
 
 
 export async function getUserPosts(req, res) {
